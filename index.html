@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Universe ❤️</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% 45%,
+                    #172554 0%,
+                    #0f172a 45%,
+                    #020617 100%
+                );
+
+            color: white;
+        }
+
+
+        /* =========================================
+           UNIVERSE
+        ========================================= */
+
+        .universe {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+        }
+
+
+        /* =========================================
+           MOON
+        ========================================= */
+
+        .moon {
+            position: absolute;
+
+            top: 70px;
+            right: 100px;
+
+            width: 120px;
+            height: 120px;
+
+            border-radius: 50%;
+
+            background: #fffbea;
+
+            box-shadow:
+                0 0 20px white,
+                0 0 50px rgba(255,255,255,0.5),
+                0 0 100px rgba(255,255,255,0.2);
+
+            z-index: 5;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.4s,
+                box-shadow 0.4s;
+        }
+
+
+        .moon:hover {
+            transform: scale(1.12);
+
+            box-shadow:
+                0 0 30px white,
+                0 0 70px rgba(255,255,255,0.8),
+                0 0 130px rgba(150,180,255,0.5);
+        }
+
+
+        /* =========================================
+           MOON HINT
+        ========================================= */
+
+        .moon-hint {
+            position: absolute;
+
+            top: 205px;
+            right: 90px;
+
+            z-index: 5;
+
+            font-family: Georgia, serif;
+
+            font-size: 13px;
+
+            color: rgba(255,255,255,0.6);
+
+            opacity: 0;
+
+            transition: opacity 0.4s;
+
+            pointer-events: none;
+        }
+
+
+        .moon:hover + .moon-hint {
+            opacity: 1;
+        }
+
+
+        /* =========================================
+           STARS
+        ========================================= */
+
+        #stars {
+            position: absolute;
+            inset: 0;
+        }
+
+
+        .star {
+            position: absolute;
+
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            box-shadow:
+                0 0 5px white,
+                0 0 15px white;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s,
+                box-shadow 0.3s;
+        }
+
+
+        .star:hover {
+            transform: scale(3);
+
+            box-shadow:
+                0 0 10px white,
+                0 0 30px white,
+                0 0 60px white;
+        }
+
+
+        .star.twinkle {
+            animation:
+                twinkle 2s infinite ease-in-out;
+        }
+
+
+        @keyframes twinkle {
+
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+
+        }
+
+
+        /* =========================================
+           MAIN CONTENT
+        ========================================= */
+
+        .content {
+            position: relative;
+
+            z-index: 10;
+
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            pointer-events: none;
+
+            padding: 20px;
+        }
+
+
+        h1 {
+            font-family: Georgia, serif;
+
+            font-size: clamp(45px, 8vw, 85px);
+
+            letter-spacing: 5px;
+
+            margin-bottom: 15px;
+
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.8),
+                0 0 30px rgba(130,170,255,0.8),
+                0 0 60px rgba(100,130,255,0.5);
+
+            animation:
+                titleGlow 3s infinite alternate;
+        }
+
+
+        @keyframes titleGlow {
+
+            from {
+                text-shadow:
+                    0 0 10px white,
+                    0 0 25px rgba(130,170,255,0.5);
+            }
+
+            to {
+                text-shadow:
+                    0 0 20px white,
+                    0 0 50px rgba(130,170,255,1),
+                    0 0 80px rgba(100,130,255,0.7);
+            }
+
+        }
+
+
+        .subtitle {
+            font-family: Georgia, serif;
+
+            font-size: 21px;
+
+            font-style: italic;
+
+            opacity: 0.85;
+
+            margin-bottom: 30px;
+        }
+
+
+        .instruction {
+            font-size: 15px;
+
+            opacity: 0.6;
+
+            letter-spacing: 2px;
+
+            animation: pulse 2s infinite;
+        }
+
+
+        @keyframes pulse {
+
+            0%, 100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =========================================
+           SHOOTING STARS
+        ========================================= */
+
+        .shooting-star {
+            position: absolute;
+
+            width: 2px;
+            height: 2px;
+
+            background: white;
+
+            box-shadow:
+                0 0 10px white,
+                0 0 20px white;
+
+            transform: rotate(-45deg);
+
+            animation:
+                shooting 1.5s linear forwards;
+        }
+
+
+        .shooting-star::after {
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 2px;
+
+            right: 0;
+
+            background:
+                linear-gradient(
+                    to left,
+                    white,
+                    transparent
+                );
+        }
+
+
+        @keyframes shooting {
+
+            from {
+                transform:
+                    translate(0, 0)
+                    rotate(-45deg);
+
+                opacity: 1;
+            }
+
+            to {
+                transform:
+                    translate(-500px, 500px)
+                    rotate(-45deg);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        /* =========================================
+           MEMORY POPUP
+        ========================================= */
+
+        #message-box {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 100;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0, 0, 20, 0.65);
+
+            backdrop-filter: blur(10px);
+        }
+
+
+        .hidden {
+            display: none !important;
+        }
+
+
+        .message-card {
+            position: relative;
+
+            width: min(520px, 95%);
+
+            padding: 50px 35px;
+
+            text-align: center;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(30,41,90,0.97),
+                    rgba(15,23,42,0.97)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.2);
+
+            box-shadow:
+                0 0 40px rgba(100,150,255,0.4),
+                0 0 100px rgba(100,100,255,0.2);
+
+            animation:
+                cardAppear 0.5s ease;
+        }
+
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(0.7)
+                    translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+
+        }
+
+
+        #message-star {
+            font-size: 55px;
+
+            margin-bottom: 15px;
+        }
+
+
+        #message-title {
+            font-family: Georgia, serif;
+
+            font-size: 32px;
+
+            margin-bottom: 20px;
+
+            text-shadow:
+                0 0 15px rgba(150,180,255,0.7);
+        }
+
+
+        #message-text {
+            font-family: Georgia, serif;
+
+            font-size: 18px;
+
+            line-height: 1.8;
+
+            color:
+                rgba(255,255,255,0.85);
+        }
+
+
+        #close-button {
+            position: absolute;
+
+            top: 15px;
+            right: 20px;
+
+            width: 35px;
+            height: 35px;
+
+            border: none;
+
+            background: transparent;
+
+            color: white;
+
+            font-size: 30px;
+
+            cursor: pointer;
+
+            opacity: 0.6;
+
+            transition: 0.2s;
+        }
+
+
+        #close-button:hover {
+            opacity: 1;
+
+            transform: rotate(90deg);
+        }
+
+
+        /* =========================================
+           FINAL MOON MESSAGE
+        ========================================= */
+
+        .final-card {
+            width: min(650px, 95%);
+
+            padding: 60px 35px;
+
+            text-align: center;
+
+            border-radius: 35px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(30,41,90,0.98),
+                    rgba(2,6,23,0.98)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.25);
+
+            box-shadow:
+                0 0 50px rgba(150,180,255,0.5),
+                0 0 150px rgba(100,100,255,0.2);
+
+            animation:
+                finalAppear 1s ease;
+        }
+
+
+        @keyframes finalAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(0.6);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1);
+            }
+
+        }
+
+
+        .final-moon {
+            font-size: 70px;
+
+            margin-bottom: 20px;
+
+            filter:
+                drop-shadow(0 0 25px white);
+
+            animation:
+                moonFloat 3s infinite ease-in-out;
+        }
+
+
+        @keyframes moonFloat {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+        }
+
+
+        .final-card h2 {
+            font-family: Georgia, serif;
+
+            font-size: clamp(28px, 5vw, 42px);
+
+            line-height: 1.3;
+
+            margin-bottom: 25px;
+
+            text-shadow:
+                0 0 20px rgba(150,180,255,0.8);
+        }
+
+
+        .final-card p {
+            font-family: Georgia, serif;
+
+            font-size: 19px;
+
+            line-height: 1.8;
+
+            color:
+                rgba(255,255,255,0.85);
+
+            margin-bottom: 25px;
+        }
+
+
+        .heart {
+            font-size: 50px;
+
+            display: inline-block;
+
+            animation:
+                heartbeat 1.3s infinite;
+        }
+
+
+        @keyframes heartbeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.3);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.2);
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            .moon {
+                width: 75px;
+                height: 75px;
+
+                top: 40px;
+                right: 40px;
+            }
+
+
+            .moon-hint {
+                top: 125px;
+                right: 35px;
+
+                font-size: 11px;
+            }
+
+
+            h1 {
+                letter-spacing: 2px;
+            }
+
+
+            .subtitle {
+                font-size: 17px;
+            }
+
+
+            .message-card {
+                padding: 40px 25px;
+            }
+
+
+            #message-title {
+                font-size: 27px;
+            }
+
+
+            #message-text {
+                font-size: 16px;
+            }
+
+
+            .final-card {
+                padding: 45px 25px;
+            }
+
+
+            .final-card p {
+                font-size: 17px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     UNIVERSE
+========================================== -->
+
+<div class="universe">
+
+    <div id="stars"></div>
+
+    <!-- CLICKABLE MOON -->
+
+    <div
+        class="moon"
+        id="moon">
+    </div>
+
+    <div class="moon-hint">
+        click the moon...
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     MAIN CONTENT
+========================================== -->
+
+<main class="content">
+
+    <h1>
+        Our Universe
+    </h1>
+
+    <p class="subtitle">
+        Every star has a story...
+    </p>
+
+    <p class="instruction">
+        ✨ Click a star to discover one ✨
+    </p>
+
+</main>
+
+
+<!-- ==========================================
+     MEMORY POPUP
+========================================== -->
+
+<div
+    id="message-box"
+    class="hidden">
+
+    <div class="message-card">
+
+        <button id="close-button">
+            ×
+        </button>
+
+
+        <div id="message-star">
+            ⭐
+        </div>
+
+
+        <h2 id="message-title">
+            Your Smile
+        </h2>
+
+
+        <p id="message-text">
+            Your smile can completely change my whole day.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     JAVASCRIPT
+========================================== -->
+
+<script>
+
+
+/* ==================================================
+   YOUR MEMORIES
+
+   CHANGE THESE TO YOUR REAL MEMORIES
+================================================== */
+
+
+const memories = [
+
+    {
+        title: "The Day I Met You",
+
+        text:
+        "I didn't know it at the time, but meeting you would become one of the most beautiful things in my life.",
+
+        symbol: "⭐"
+    },
+
+
+    {
+        title: "Your Smile",
+
+        text:
+        "Your smile has this strange ability to make everything around me feel better.",
+
+        symbol: "✨"
+    },
+
+
+    {
+        title: "Our First Conversation",
+
+        text:
+        "It was just a conversation, but somehow it became the beginning of something I never expected.",
+
+        symbol: "🌙"
+    },
+
+
+    {
+        title: "Your Eyes",
+
+        text:
+        "Sometimes I forget what I was saying because I get distracted looking at you.",
+
+        symbol: "💫"
+    },
+
+
+    {
+        title: "My Favorite Memory",
+
+        text:
+        "There are moments I wish I could pause forever. Some of them are simply moments with you.",
+
+        symbol: "🌟"
+    },
+
+
+    {
+        title: "Why You're Special",
+
+        text:
+        "There are millions of people in this world, but somehow you became the person who matters to me the most.",
+
+        symbol: "❤️"
+    },
+
+
+    {
+        title: "Something I Never Say",
+
+        text:
+        "I think about you much more often than you probably realize.",
+
+        symbol: "💖"
+    },
+
+
+    {
+        title: "If I Could Give You A Star",
+
+        text:
+        "I would give you the brightest one. But even that wouldn't be enough to represent how special you are to me.",
+
+        symbol: "🌠"
+    },
+
+
+    {
+        title: "One Last Thing",
+
+        text:
+        "Out of all the stars in the universe, somehow I found you.",
+
+        symbol: "💗"
+    }
+
+];
+
+
+
+/* ==================================================
+   HTML ELEMENTS
+================================================== */
+
+
+const starsContainer =
+    document.getElementById("stars");
+
+
+const messageBox =
+    document.getElementById("message-box");
+
+
+const messageTitle =
+    document.getElementById("message-title");
+
+
+const messageText =
+    document.getElementById("message-text");
+
+
+const messageStar =
+    document.getElementById("message-star");
+
+
+const closeButton =
+    document.getElementById("close-button");
+
+
+const moon =
+    document.getElementById("moon");
+
+
+
+/* ==================================================
+   CREATE STARS
+================================================== */
+
+
+for (let i = 0; i < 45; i++) {
+
+    const star =
+        document.createElement("div");
+
+
+    star.classList.add("star");
+
+
+    /*
+       Random position
+    */
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+
+    /*
+       Random size
+    */
+
+    const size =
+        Math.random() * 5 + 4;
+
+
+    star.style.width =
+        size + "px";
+
+
+    star.style.height =
+        size + "px";
+
+
+    /*
+       Random twinkle
+    */
+
+    if (Math.random() > 0.5) {
+
+        star.classList.add("twinkle");
+
+        star.style.animationDelay =
+            Math.random() * 3 + "s";
+
+    }
+
+
+
+    /* ==========================================
+       STAR CLICK
+    ========================================== */
+
+
+    star.addEventListener(
+        "click",
+        function () {
+
+            const memory =
+                memories[i % memories.length];
+
+
+            messageTitle.textContent =
+                memory.title;
+
+
+            messageText.textContent =
+                memory.text;
+
+
+            messageStar.textContent =
+                memory.symbol;
+
+
+            messageBox.classList.remove(
+                "hidden"
+            );
+
+        }
+    );
+
+
+    starsContainer.appendChild(star);
+
+}
+
+
+
+/* ==================================================
+   CLOSE MEMORY
+================================================== */
+
+
+closeButton.addEventListener(
+    "click",
+    function () {
+
+        messageBox.classList.add(
+            "hidden"
+        );
+
+    }
+);
+
+
+
+/* ==================================================
+   CLOSE BY CLICKING OUTSIDE
+================================================== */
+
+
+messageBox.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target === messageBox
+        ) {
+
+            messageBox.classList.add(
+                "hidden"
+            );
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   ESC KEY
+================================================== */
+
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+
+            messageBox.classList.add(
+                "hidden"
+            );
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   MOON CLICK
+================================================== */
+
+
+moon.addEventListener(
+    "click",
+    function () {
+
+        /*
+           Create a special full-screen
+           romantic message.
+        */
+
+
+        messageBox.innerHTML = `
+
+            <div class="final-card">
+
+                <div class="final-moon">
+                    🌙
+                </div>
+
+
+                <h2>
+                    Would you give our relationship
+                    a chance to move forward?
+                </h2>
+
+
+                <p>
+                    I've shown you some of the stars
+                    that remind me of you...
+                    but there is one thing I still
+                    want to ask you.
+                </p>
+
+
+                <p>
+                    I don't want to rush you.
+                    I just want to know if you
+                    would let us take the next step
+                    together.
+                </p>
+
+
+                <div class="heart">
+                    ❤️
+                </div>
+
+            </div>
+
+        `;
+
+
+        messageBox.classList.remove(
+            "hidden"
+        );
+
+    }
+);
+
+
+
+/* ==================================================
+   SHOOTING STARS
+================================================== */
+
+
+function createShootingStar() {
+
+    const shootingStar =
+        document.createElement("div");
+
+
+    shootingStar.classList.add(
+        "shooting-star"
+    );
+
+
+    shootingStar.style.left =
+        Math.random() * 100 + "%";
+
+
+    shootingStar.style.top =
+        Math.random() * 40 + "%";
+
+
+    document
+        .querySelector(".universe")
+        .appendChild(
+            shootingStar
+        );
+
+
+    setTimeout(
+        function () {
+
+            shootingStar.remove();
+
+        },
+        1500
+    );
+
+}
+
+
+
+/* New shooting star every 4 seconds */
+
+setInterval(
+    createShootingStar,
+    4000
+);
+
+
+</script>
+
+</body>
+
+</html>
