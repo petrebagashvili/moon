@@ -1,766 +1,965 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Universe ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 50%, #18245c 0%, #090d2b 40%, #02030d 100%);
+    color: white;
+}
+
+/* =========================
+   MAIN UNIVERSE
+========================= */
+
+.universe {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Stars */
+
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow:
+        0 0 6px white,
+        0 0 12px rgba(255,255,255,0.8);
+    cursor: pointer;
+    animation: twinkle 2s infinite alternate;
+    transition: transform 0.3s;
+}
+
+.star:hover {
+    transform: scale(2.5);
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.3;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Bigger special stars */
+
+.special-star {
+    width: 7px;
+    height: 7px;
+    box-shadow:
+        0 0 10px white,
+        0 0 20px #fff,
+        0 0 35px rgba(255,255,255,0.8);
+}
 
-    <title>Our Universe ❤️</title>
+/* Moon */
+
+.moon {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: #fffdf0;
 
-    <style>
+    top: 50%;
+    left: 50%;
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    transform: translate(-50%, -50%);
 
-        body {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
+    box-shadow:
+        0 0 30px #fff,
+        0 0 70px rgba(255,255,255,0.8),
+        0 0 130px rgba(170,180,255,0.5);
 
-            font-family: Arial, sans-serif;
+    cursor: pointer;
 
-            background:
-                radial-gradient(
-                    circle at 50% 45%,
-                    #172554 0%,
-                    #0f172a 45%,
-                    #020617 100%
-                );
+    transition: 0.5s;
+}
 
-            color: white;
-        }
+.moon:hover {
+    transform: translate(-50%, -50%) scale(1.08);
 
+    box-shadow:
+        0 0 50px white,
+        0 0 100px rgba(255,255,255,0.9),
+        0 0 160px rgba(170,180,255,0.7);
+}
 
-        /* =========================================
-           UNIVERSE
-        ========================================= */
+/* Moon text */
 
-        .universe {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-        }
+.moon-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
 
+    top: calc(50% + 110px);
+    left: 50%;
 
-        /* =========================================
-           MOON
-        ========================================= */
+    transform: translateX(-50%);
 
-        .moon {
-            position: absolute;
+    font-size: 14px;
+    opacity: 0.7;
+    letter-spacing: 2px;
+}
 
-            top: 70px;
-            right: 100px;
+/* =========================
+   INTRO
+========================= */
 
-            width: 120px;
-            height: 120px;
+.intro {
+    position: absolute;
 
-            border-radius: 50%;
+    top: 35px;
+    left: 50%;
 
-            background: #fffbea;
+    transform: translateX(-50%);
 
-            box-shadow:
-                0 0 20px white,
-                0 0 50px rgba(255,255,255,0.5),
-                0 0 100px rgba(255,255,255,0.2);
+    text-align: center;
 
-            z-index: 5;
+    width: 90%;
 
-            cursor: pointer;
+    z-index: 5;
+}
 
-            transition:
-                transform 0.4s,
-                box-shadow 0.4s;
-        }
+.intro h1 {
+    font-size: 32px;
+    font-weight: 300;
 
+    text-shadow:
+        0 0 20px rgba(255,255,255,0.5);
+}
 
-        .moon:hover {
-            transform: scale(1.12);
+.intro p {
+    margin-top: 10px;
+    font-size: 15px;
+    opacity: 0.65;
+}
 
-            box-shadow:
-                0 0 30px white,
-                0 0 70px rgba(255,255,255,0.8),
-                0 0 130px rgba(150,180,255,0.5);
-        }
+/* =========================
+   MEMORY CARD
+========================= */
 
+.memory {
+    position: fixed;
 
-        /* =========================================
-           MOON HINT
-        ========================================= */
+    top: 50%;
+    left: 50%;
 
-        .moon-hint {
-            position: absolute;
+    transform: translate(-50%, -50%) scale(0.8);
 
-            top: 205px;
-            right: 90px;
+    width: min(500px, 90%);
 
-            z-index: 5;
+    padding: 35px;
 
-            font-family: Georgia, serif;
+    background:
+        rgba(10, 15, 45, 0.92);
 
-            font-size: 13px;
+    border:
+        1px solid rgba(255,255,255,0.2);
 
-            color: rgba(255,255,255,0.6);
+    border-radius: 25px;
 
-            opacity: 0;
+    text-align: center;
 
-            transition: opacity 0.4s;
+    z-index: 100;
 
-            pointer-events: none;
-        }
+    opacity: 0;
+    visibility: hidden;
 
+    transition: 0.4s;
 
-        .moon:hover + .moon-hint {
-            opacity: 1;
-        }
+    box-shadow:
+        0 0 60px rgba(120,150,255,0.3);
 
+    backdrop-filter: blur(15px);
+}
 
-        /* =========================================
-           STARS
-        ========================================= */
+.memory.show {
+    opacity: 1;
+    visibility: visible;
 
-        #stars {
-            position: absolute;
-            inset: 0;
-        }
+    transform:
+        translate(-50%, -50%) scale(1);
+}
 
+.memory h2 {
+    margin-bottom: 15px;
+    font-weight: 400;
+}
 
-        .star {
-            position: absolute;
+.memory p {
+    line-height: 1.7;
+    opacity: 0.85;
+}
 
-            width: 7px;
-            height: 7px;
+.close {
+    margin-top: 25px;
 
-            border-radius: 50%;
+    padding: 10px 25px;
 
-            background: white;
+    border: 1px solid rgba(255,255,255,0.4);
 
-            box-shadow:
-                0 0 5px white,
-                0 0 15px white;
+    background: transparent;
 
-            cursor: pointer;
+    color: white;
 
-            transition:
-                transform 0.3s,
-                box-shadow 0.3s;
-        }
+    border-radius: 30px;
 
+    cursor: pointer;
 
-        .star:hover {
-            transform: scale(3);
+    transition: 0.3s;
+}
 
-            box-shadow:
-                0 0 10px white,
-                0 0 30px white,
-                0 0 60px white;
-        }
+.close:hover {
+    background: white;
+    color: #080b25;
+}
 
+/* =========================
+   SHOOTING STARS
+========================= */
 
-        .star.twinkle {
-            animation:
-                twinkle 2s infinite ease-in-out;
-        }
+.shooting-star {
+    position: absolute;
 
+    width: 120px;
+    height: 2px;
 
-        @keyframes twinkle {
+    background:
+        linear-gradient(90deg, white, transparent);
 
-            0%, 100% {
-                opacity: 0.3;
-                transform: scale(0.8);
-            }
+    transform: rotate(-35deg);
 
-            50% {
-                opacity: 1;
-                transform: scale(1.5);
-            }
+    opacity: 0;
 
-        }
+    animation: shooting 5s linear infinite;
+}
 
+@keyframes shooting {
 
-        /* =========================================
-           MAIN CONTENT
-        ========================================= */
+    0% {
+        transform:
+            translate(0,0)
+            rotate(-35deg);
 
-        .content {
-            position: relative;
+        opacity: 0;
+    }
 
-            z-index: 10;
+    10% {
+        opacity: 1;
+    }
 
-            width: 100%;
-            height: 100vh;
+    30% {
+        transform:
+            translate(500px,300px)
+            rotate(-35deg);
 
-            display: flex;
-            flex-direction: column;
+        opacity: 0;
+    }
 
-            justify-content: center;
-            align-items: center;
+    100% {
+        opacity: 0;
+    }
+}
 
-            text-align: center;
+/* =========================
+   FUTURE SCREEN
+========================= */
 
-            pointer-events: none;
+.future {
+    position: fixed;
 
-            padding: 20px;
-        }
+    inset: 0;
 
+    background:
+        radial-gradient(
+            circle at center,
+            #191d58 0%,
+            #090b28 45%,
+            #02030c 100%
+        );
 
-        h1 {
-            font-family: Georgia, serif;
+    display: flex;
 
-            font-size: clamp(45px, 8vw, 85px);
+    align-items: center;
+    justify-content: center;
 
-            letter-spacing: 5px;
+    z-index: 200;
 
-            margin-bottom: 15px;
+    opacity: 0;
+    visibility: hidden;
 
-            text-shadow:
-                0 0 10px rgba(255,255,255,0.8),
-                0 0 30px rgba(130,170,255,0.8),
-                0 0 60px rgba(100,130,255,0.5);
+    transition: 1s;
 
-            animation:
-                titleGlow 3s infinite alternate;
-        }
+    text-align: center;
+}
 
+.future.show {
+    opacity: 1;
+    visibility: visible;
+}
 
-        @keyframes titleGlow {
+.future-content {
+    width: min(700px, 90%);
+}
 
-            from {
-                text-shadow:
-                    0 0 10px white,
-                    0 0 25px rgba(130,170,255,0.5);
-            }
+.future h1 {
+    font-size: 40px;
 
-            to {
-                text-shadow:
-                    0 0 20px white,
-                    0 0 50px rgba(130,170,255,1),
-                    0 0 80px rgba(100,130,255,0.7);
-            }
+    font-weight: 300;
 
-        }
+    margin-bottom: 20px;
+}
 
+.future p {
+    font-size: 18px;
 
-        .subtitle {
-            font-family: Georgia, serif;
+    line-height: 1.8;
 
-            font-size: 21px;
+    opacity: 0.75;
+}
 
-            font-style: italic;
+/* Future cards */
 
-            opacity: 0.85;
+.future-cards {
+    margin-top: 35px;
 
-            margin-bottom: 30px;
-        }
+    display: flex;
 
+    justify-content: center;
 
-        .instruction {
-            font-size: 15px;
+    flex-wrap: wrap;
 
-            opacity: 0.6;
+    gap: 15px;
+}
 
-            letter-spacing: 2px;
+.future-card {
+    padding: 15px 20px;
 
-            animation: pulse 2s infinite;
-        }
+    border:
+        1px solid rgba(255,255,255,0.15);
 
+    background:
+        rgba(255,255,255,0.05);
 
-        @keyframes pulse {
+    border-radius: 20px;
 
-            0%, 100% {
-                opacity: 0.4;
-            }
+    backdrop-filter: blur(10px);
 
-            50% {
-                opacity: 1;
-            }
+    opacity: 0;
 
-        }
+    transform: translateY(20px);
 
+    animation:
+        cardAppear 1s forwards;
 
-        /* =========================================
-           SHOOTING STARS
-        ========================================= */
+}
 
-        .shooting-star {
-            position: absolute;
+.future-card:nth-child(1) {
+    animation-delay: 0.5s;
+}
 
-            width: 2px;
-            height: 2px;
+.future-card:nth-child(2) {
+    animation-delay: 1s;
+}
 
-            background: white;
+.future-card:nth-child(3) {
+    animation-delay: 1.5s;
+}
 
-            box-shadow:
-                0 0 10px white,
-                0 0 20px white;
+.future-card:nth-child(4) {
+    animation-delay: 2s;
+}
 
-            transform: rotate(-45deg);
+.future-card:nth-child(5) {
+    animation-delay: 2.5s;
+}
 
-            animation:
-                shooting 1.5s linear forwards;
-        }
+@keyframes cardAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
+/* Continue button */
 
-        .shooting-star::after {
-            content: "";
+.continue {
+    margin-top: 40px;
 
-            position: absolute;
+    padding: 14px 30px;
 
-            width: 100px;
-            height: 2px;
+    border: none;
 
-            right: 0;
+    border-radius: 30px;
 
-            background:
-                linear-gradient(
-                    to left,
-                    white,
-                    transparent
-                );
-        }
+    background: white;
 
+    color: #090b28;
 
-        @keyframes shooting {
+    font-size: 15px;
 
-            from {
-                transform:
-                    translate(0, 0)
-                    rotate(-45deg);
+    cursor: pointer;
 
-                opacity: 1;
-            }
+    opacity: 0;
 
-            to {
-                transform:
-                    translate(-500px, 500px)
-                    rotate(-45deg);
+    animation:
+        buttonAppear 1s forwards;
 
-                opacity: 0;
-            }
+    animation-delay: 3.5s;
+}
 
-        }
+@keyframes buttonAppear {
+    to {
+        opacity: 1;
+    }
+}
 
+/* =========================
+   PROPOSAL
+========================= */
 
-        /* =========================================
-           MEMORY POPUP
-        ========================================= */
+.proposal {
+    position: fixed;
 
-        #message-box {
-            position: fixed;
+    inset: 0;
 
-            inset: 0;
+    background:
+        radial-gradient(
+            circle at center,
+            #200b32 0%,
+            #080718 55%,
+            #010106 100%
+        );
 
-            z-index: 100;
+    z-index: 300;
 
-            display: flex;
+    display: flex;
 
-            justify-content: center;
-            align-items: center;
+    align-items: center;
+    justify-content: center;
 
-            padding: 20px;
+    text-align: center;
 
-            background:
-                rgba(0, 0, 20, 0.65);
+    opacity: 0;
+    visibility: hidden;
 
-            backdrop-filter: blur(10px);
-        }
+    transition: 1s;
+}
 
+.proposal.show {
+    opacity: 1;
+    visibility: visible;
+}
 
-        .hidden {
-            display: none !important;
-        }
+.proposal-content {
+    width: min(700px, 90%);
+}
 
+/* Ring */
 
-        .message-card {
-            position: relative;
+.ring {
+    font-size: 100px;
 
-            width: min(520px, 95%);
+    margin-bottom: 20px;
 
-            padding: 50px 35px;
+    opacity: 0;
 
-            text-align: center;
+    transform: scale(0.2) rotate(-30deg);
 
-            border-radius: 30px;
+    animation:
+        ringAppear 2s forwards;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(30,41,90,0.97),
-                    rgba(15,23,42,0.97)
-                );
+}
 
-            border:
-                1px solid rgba(255,255,255,0.2);
+@keyframes ringAppear {
 
-            box-shadow:
-                0 0 40px rgba(100,150,255,0.4),
-                0 0 100px rgba(100,100,255,0.2);
+    0% {
+        opacity: 0;
+        transform:
+            scale(0.2)
+            rotate(-30deg);
+    }
 
-            animation:
-                cardAppear 0.5s ease;
-        }
+    60% {
+        opacity: 1;
+        transform:
+            scale(1.2)
+            rotate(10deg);
+    }
 
+    100% {
+        opacity: 1;
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
 
-        @keyframes cardAppear {
+.proposal h1 {
+    font-size: 48px;
 
-            from {
-                opacity: 0;
+    font-weight: 300;
 
-                transform:
-                    scale(0.7)
-                    translateY(30px);
-            }
+    margin-bottom: 20px;
 
-            to {
-                opacity: 1;
+    opacity: 0;
 
-                transform:
-                    scale(1)
-                    translateY(0);
-            }
+    animation:
+        textAppear 1.5s forwards;
 
-        }
+    animation-delay: 1.3s;
+}
 
+.proposal p {
+    font-size: 19px;
 
-        #message-star {
-            font-size: 55px;
+    line-height: 1.8;
 
-            margin-bottom: 15px;
-        }
+    opacity: 0;
 
+    animation:
+        textAppear 1.5s forwards;
 
-        #message-title {
-            font-family: Georgia, serif;
+    animation-delay: 2s;
+}
 
-            font-size: 32px;
+@keyframes textAppear {
+    to {
+        opacity: 1;
+    }
+}
 
-            margin-bottom: 20px;
+/* Proposal buttons */
 
-            text-shadow:
-                0 0 15px rgba(150,180,255,0.7);
-        }
+.buttons {
+    margin-top: 35px;
 
+    display: flex;
 
-        #message-text {
-            font-family: Georgia, serif;
+    justify-content: center;
 
-            font-size: 18px;
+    gap: 20px;
 
-            line-height: 1.8;
+    opacity: 0;
 
-            color:
-                rgba(255,255,255,0.85);
-        }
+    animation:
+        textAppear 1.5s forwards;
 
+    animation-delay: 3s;
+}
 
-        #close-button {
-            position: absolute;
+.yes-button {
+    padding: 14px 35px;
 
-            top: 15px;
-            right: 20px;
+    border: none;
 
-            width: 35px;
-            height: 35px;
+    border-radius: 30px;
 
-            border: none;
+    background: #ff5c8a;
 
-            background: transparent;
+    color: white;
 
-            color: white;
+    font-size: 17px;
 
-            font-size: 30px;
+    cursor: pointer;
 
-            cursor: pointer;
+    box-shadow:
+        0 0 25px rgba(255,92,138,0.5);
 
-            opacity: 0.6;
+    transition: 0.3s;
+}
 
-            transition: 0.2s;
-        }
+.yes-button:hover {
+    transform: scale(1.08);
 
+    box-shadow:
+        0 0 45px rgba(255,92,138,0.8);
+}
 
-        #close-button:hover {
-            opacity: 1;
+.time-button {
+    padding: 14px 25px;
 
-            transform: rotate(90deg);
-        }
+    border:
+        1px solid rgba(255,255,255,0.3);
 
+    border-radius: 30px;
 
-        /* =========================================
-           FINAL MOON MESSAGE
-        ========================================= */
+    background: transparent;
 
-        .final-card {
-            width: min(650px, 95%);
+    color: white;
 
-            padding: 60px 35px;
+    font-size: 15px;
 
-            text-align: center;
+    cursor: pointer;
 
-            border-radius: 35px;
+    transition: 0.3s;
+}
 
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(30,41,90,0.98),
-                    rgba(2,6,23,0.98)
-                );
+.time-button:hover {
+    background:
+        rgba(255,255,255,0.1);
+}
 
-            border:
-                1px solid rgba(255,255,255,0.25);
+/* =========================
+   YES SCREEN
+========================= */
 
-            box-shadow:
-                0 0 50px rgba(150,180,255,0.5),
-                0 0 150px rgba(100,100,255,0.2);
+.yes-screen {
+    position: fixed;
 
-            animation:
-                finalAppear 1s ease;
-        }
+    inset: 0;
 
+    background:
+        radial-gradient(
+            circle,
+            #4b123c,
+            #13051a 70%
+        );
 
-        @keyframes finalAppear {
+    z-index: 500;
 
-            from {
-                opacity: 0;
+    display: flex;
 
-                transform:
-                    scale(0.6);
-            }
+    align-items: center;
 
-            to {
-                opacity: 1;
+    justify-content: center;
 
-                transform:
-                    scale(1);
-            }
+    text-align: center;
 
-        }
+    opacity: 0;
+    visibility: hidden;
 
+    transition: 1s;
+}
 
-        .final-moon {
-            font-size: 70px;
+.yes-screen.show {
+    opacity: 1;
+    visibility: visible;
+}
 
-            margin-bottom: 20px;
+.yes-content h1 {
+    font-size: 55px;
 
-            filter:
-                drop-shadow(0 0 25px white);
+    font-weight: 300;
 
-            animation:
-                moonFloat 3s infinite ease-in-out;
-        }
+    margin-bottom: 20px;
+}
 
+.yes-content p {
+    font-size: 20px;
 
-        @keyframes moonFloat {
+    line-height: 1.8;
 
-            0%, 100% {
-                transform: translateY(0);
-            }
+    opacity: 0.8;
+}
 
-            50% {
-                transform: translateY(-10px);
-            }
+/* Hearts */
 
-        }
+.heart {
+    position: absolute;
 
+    color: #ff6b9d;
 
-        .final-card h2 {
-            font-family: Georgia, serif;
+    font-size: 25px;
 
-            font-size: clamp(28px, 5vw, 42px);
+    animation:
+        heartFloat 5s linear forwards;
+}
 
-            line-height: 1.3;
+@keyframes heartFloat {
 
-            margin-bottom: 25px;
+    0% {
+        transform:
+            translateY(0)
+            scale(0.5);
 
-            text-shadow:
-                0 0 20px rgba(150,180,255,0.8);
-        }
+        opacity: 0;
+    }
 
+    20% {
+        opacity: 1;
+    }
 
-        .final-card p {
-            font-family: Georgia, serif;
+    100% {
+        transform:
+            translateY(-100vh)
+            scale(1.2);
 
-            font-size: 19px;
+        opacity: 0;
+    }
+}
 
-            line-height: 1.8;
+/* =========================
+   MOBILE
+========================= */
 
-            color:
-                rgba(255,255,255,0.85);
+@media (max-width: 600px) {
 
-            margin-bottom: 25px;
-        }
+    .intro h1 {
+        font-size: 25px;
+    }
 
+    .moon {
+        width: 120px;
+        height: 120px;
+    }
 
-        .heart {
-            font-size: 50px;
+    .moon-text {
+        top: calc(50% + 85px);
+        font-size: 11px;
+    }
 
-            display: inline-block;
+    .future h1 {
+        font-size: 30px;
+    }
 
-            animation:
-                heartbeat 1.3s infinite;
-        }
+    .future p {
+        font-size: 16px;
+    }
 
+    .proposal h1 {
+        font-size: 36px;
+    }
 
-        @keyframes heartbeat {
+    .proposal p {
+        font-size: 16px;
+    }
 
-            0%, 100% {
-                transform: scale(1);
-            }
+    .ring {
+        font-size: 75px;
+    }
 
-            15% {
-                transform: scale(1.3);
-            }
-
-            30% {
-                transform: scale(1);
-            }
-
-            45% {
-                transform: scale(1.2);
-            }
-
-        }
-
-
-        /* =========================================
-           MOBILE
-        ========================================= */
-
-        @media (max-width: 600px) {
-
-            .moon {
-                width: 75px;
-                height: 75px;
-
-                top: 40px;
-                right: 40px;
-            }
-
-
-            .moon-hint {
-                top: 125px;
-                right: 35px;
-
-                font-size: 11px;
-            }
-
-
-            h1 {
-                letter-spacing: 2px;
-            }
-
-
-            .subtitle {
-                font-size: 17px;
-            }
-
-
-            .message-card {
-                padding: 40px 25px;
-            }
-
-
-            #message-title {
-                font-size: 27px;
-            }
-
-
-            #message-text {
-                font-size: 16px;
-            }
-
-
-            .final-card {
-                padding: 45px 25px;
-            }
-
-
-            .final-card p {
-                font-size: 17px;
-            }
-
-        }
-
-    </style>
-
+    .yes-content h1 {
+        font-size: 40px;
+    }
+}
+</style>
 </head>
 
 
 <body>
 
-
-<!-- ==========================================
-     UNIVERSE
-========================================== -->
-
 <div class="universe">
 
-    <div id="stars"></div>
+    <!-- INTRO -->
 
-    <!-- CLICKABLE MOON -->
+    <div class="intro">
+
+        <h1>Our Universe ❤️</h1>
+
+        <p>
+            Every star here holds a little piece of our story.
+        </p>
+
+    </div>
+
+
+    <!-- STARS WILL BE CREATED BY JAVASCRIPT -->
+
+
+    <!-- MOON -->
 
     <div
         class="moon"
-        id="moon">
+        onclick="openFuture()">
     </div>
 
-    <div class="moon-hint">
-        click the moon...
+    <div class="moon-text">
+        Click the moon when you're ready...
+    </div>
+
+
+    <!-- Shooting stars -->
+
+    <div
+        class="shooting-star"
+        style="top:15%; left:5%;">
+    </div>
+
+    <div
+        class="shooting-star"
+        style="top:35%; left:60%; animation-delay:2s;">
     </div>
 
 </div>
 
 
-<!-- ==========================================
-     MAIN CONTENT
-========================================== -->
-
-<main class="content">
-
-    <h1>
-        Our Universe
-    </h1>
-
-    <p class="subtitle">
-        Every star has a story...
-    </p>
-
-    <p class="instruction">
-        ✨ Click a star to discover one ✨
-    </p>
-
-</main>
-
-
-<!-- ==========================================
-     MEMORY POPUP
-========================================== -->
+<!-- MEMORY POPUP -->
 
 <div
-    id="message-box"
-    class="hidden">
+    class="memory"
+    id="memory">
 
-    <div class="message-card">
+    <h2 id="memoryTitle"></h2>
 
-        <button id="close-button">
-            ×
-        </button>
+    <p id="memoryText"></p>
+
+    <button
+        class="close"
+        onclick="closeMemory()">
+
+        Close ❤️
+
+    </button>
+
+</div>
 
 
-        <div id="message-star">
-            ⭐
+<!-- FUTURE SCREEN -->
+
+<div
+    class="future"
+    id="future">
+
+    <div class="future-content">
+
+        <h1>
+            But this isn't where our story ends...
+        </h1>
+
+        <p>
+            I don't only want to remember the moments
+            we've already had.
+            <br><br>
+
+            I want to create thousands more with you.
+        </p>
+
+
+        <div class="future-cards">
+
+            <div class="future-card">
+                More mornings together ☀️
+            </div>
+
+            <div class="future-card">
+                More adventures 🌍
+            </div>
+
+            <div class="future-card">
+                More stupid jokes 😂
+            </div>
+
+            <div class="future-card">
+                More memories ❤️
+            </div>
+
+            <div class="future-card">
+                More love ♾️
+            </div>
+
         </div>
 
 
-        <h2 id="message-title">
-            Your Smile
-        </h2>
+        <button
+            class="continue"
+            onclick="openProposal()">
+
+            Show me our future ❤️
+
+        </button>
+
+    </div>
+
+</div>
 
 
-        <p id="message-text">
-            Your smile can completely change my whole day.
+<!-- PROPOSAL SCREEN -->
+
+<div
+    class="proposal"
+    id="proposal">
+
+    <div class="proposal-content">
+
+        <div class="ring">
+            💍
+        </div>
+
+        <h1>
+            I want a lifetime with you.
+        </h1>
+
+        <p>
+            I don't need a perfect life.
+            <br>
+
+            I just want to build my life with you.
+            <br><br>
+
+            Through the good days,
+            the difficult days,
+            the adventures,
+            the laughter,
+            and everything in between.
+        </p>
+
+
+        <div class="buttons">
+
+            <button
+                class="yes-button"
+                onclick="sayYes()">
+
+                Yes, I will ❤️
+
+            </button>
+
+            <button
+                class="time-button"
+                onclick="needTime()">
+
+                I need some time
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- YES SCREEN -->
+
+<div
+    class="yes-screen"
+    id="yesScreen">
+
+    <div class="yes-content">
+
+        <h1>
+            You just made me the happiest person alive. ❤️
+        </h1>
+
+        <p>
+            I can't wait to build our future together.
+            <br><br>
+
+            Our next chapter starts now.
+            💍❤️
         </p>
 
     </div>
@@ -768,152 +967,60 @@
 </div>
 
 
-<!-- ==========================================
-     JAVASCRIPT
-========================================== -->
 
 <script>
 
-
-/* ==================================================
-   YOUR MEMORIES
-
-   CHANGE THESE TO YOUR REAL MEMORIES
-================================================== */
-
+/* ==========================================
+   MEMORIES
+========================================== */
 
 const memories = [
 
     {
-        title: "The Day I Met You",
-
+        title: "The Day We Met",
         text:
-        "I didn't know it at the time, but meeting you would become one of the most beautiful things in my life.",
-
-        symbol: "⭐"
+        "This is where our story began. I didn't know it then, but meeting you would become one of the most important moments of my life."
     },
-
 
     {
         title: "Your Smile",
-
         text:
-        "Your smile has this strange ability to make everything around me feel better.",
-
-        symbol: "✨"
+        "There is something about your smile that can completely change my day. I could probably spend a lifetime trying to make you smile."
     },
-
 
     {
-        title: "Our First Conversation",
-
+        title: "Our Conversations",
         text:
-        "It was just a conversation, but somehow it became the beginning of something I never expected.",
-
-        symbol: "🌙"
+        "Some conversations were long, some were short, but somehow talking to you always felt different."
     },
-
-
-    {
-        title: "Your Eyes",
-
-        text:
-        "Sometimes I forget what I was saying because I get distracted looking at you.",
-
-        symbol: "💫"
-    },
-
 
     {
         title: "My Favorite Memory",
-
         text:
-        "There are moments I wish I could pause forever. Some of them are simply moments with you.",
-
-        symbol: "🌟"
+        "Out of all the memories we've created, this one will always have a special place in my heart."
     },
 
-
     {
-        title: "Why You're Special",
-
+        title: "You",
         text:
-        "There are millions of people in this world, but somehow you became the person who matters to me the most.",
-
-        symbol: "❤️"
+        "Out of billions of people in this world, somehow our paths crossed. And I'm incredibly grateful they did."
     },
 
-
     {
-        title: "Something I Never Say",
-
+        title: "Everything Ahead",
         text:
-        "I think about you much more often than you probably realize.",
-
-        symbol: "💖"
-    },
-
-
-    {
-        title: "If I Could Give You A Star",
-
-        text:
-        "I would give you the brightest one. But even that wouldn't be enough to represent how special you are to me.",
-
-        symbol: "🌠"
-    },
-
-
-    {
-        title: "One Last Thing",
-
-        text:
-        "Out of all the stars in the universe, somehow I found you.",
-
-        symbol: "💗"
+        "This isn't just about the memories behind us. It's about everything we haven't experienced yet."
     }
 
 ];
 
 
-
-/* ==================================================
-   HTML ELEMENTS
-================================================== */
-
-
-const starsContainer =
-    document.getElementById("stars");
-
-
-const messageBox =
-    document.getElementById("message-box");
-
-
-const messageTitle =
-    document.getElementById("message-title");
-
-
-const messageText =
-    document.getElementById("message-text");
-
-
-const messageStar =
-    document.getElementById("message-star");
-
-
-const closeButton =
-    document.getElementById("close-button");
-
-
-const moon =
-    document.getElementById("moon");
-
-
-
-/* ==================================================
+/* ==========================================
    CREATE STARS
-================================================== */
+========================================== */
+
+const universe =
+    document.querySelector(".universe");
 
 
 for (let i = 0; i < 45; i++) {
@@ -921,274 +1028,189 @@ for (let i = 0; i < 45; i++) {
     const star =
         document.createElement("div");
 
-
     star.classList.add("star");
 
 
-    /*
-       Random position
-    */
+    const x =
+        Math.random() * 95;
+
+    const y =
+        Math.random() * 90;
+
 
     star.style.left =
-        Math.random() * 100 + "%";
-
+        x + "%";
 
     star.style.top =
-        Math.random() * 100 + "%";
+        y + "%";
 
 
-    /*
-       Random size
-    */
-
-    const size =
-        Math.random() * 5 + 4;
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
 
 
-    star.style.width =
-        size + "px";
-
-
-    star.style.height =
-        size + "px";
-
-
-    /*
-       Random twinkle
-    */
-
-    if (Math.random() > 0.5) {
-
-        star.classList.add("twinkle");
-
-        star.style.animationDelay =
-            Math.random() * 3 + "s";
-
-    }
-
-
-
-    /* ==========================================
-       STAR CLICK
-    ========================================== */
-
-
-    star.addEventListener(
-        "click",
-        function () {
+    star.onclick =
+        function() {
 
             const memory =
-                memories[i % memories.length];
+                memories[
+                    Math.floor(
+                        Math.random() *
+                        memories.length
+                    )
+                ];
 
-
-            messageTitle.textContent =
-                memory.title;
-
-
-            messageText.textContent =
-                memory.text;
-
-
-            messageStar.textContent =
-                memory.symbol;
-
-
-            messageBox.classList.remove(
-                "hidden"
+            openMemory(
+                memory.title,
+                memory.text
             );
 
-        }
-    );
+        };
 
 
-    starsContainer.appendChild(star);
+    universe.appendChild(star);
+}
+
+
+/* ==========================================
+   MEMORY POPUP
+========================================== */
+
+function openMemory(title, text) {
+
+    document.getElementById(
+        "memoryTitle"
+    ).innerText = title;
+
+    document.getElementById(
+        "memoryText"
+    ).innerText = text;
+
+    document.getElementById(
+        "memory"
+    ).classList.add("show");
 
 }
 
 
-
-/* ==================================================
-   CLOSE MEMORY
-================================================== */
-
-
-closeButton.addEventListener(
-    "click",
-    function () {
-
-        messageBox.classList.add(
-            "hidden"
-        );
-
-    }
-);
-
-
-
-/* ==================================================
-   CLOSE BY CLICKING OUTSIDE
-================================================== */
-
-
-messageBox.addEventListener(
-    "click",
-    function (event) {
-
-        if (
-            event.target === messageBox
-        ) {
-
-            messageBox.classList.add(
-                "hidden"
-            );
-
-        }
-
-    }
-);
-
-
-
-/* ==================================================
-   ESC KEY
-================================================== */
-
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (event.key === "Escape") {
-
-            messageBox.classList.add(
-                "hidden"
-            );
-
-        }
-
-    }
-);
-
-
-
-/* ==================================================
-   MOON CLICK
-================================================== */
-
-
-moon.addEventListener(
-    "click",
-    function () {
-
-        /*
-           Create a special full-screen
-           romantic message.
-        */
-
-
-        messageBox.innerHTML = `
-
-            <div class="final-card">
-
-                <div class="final-moon">
-                    🌙
-                </div>
-
-
-                <h2>
-                    Would you give our relationship
-                    a chance to move forward?
-                </h2>
-
-
-                <p>
-                    I've shown you some of the stars
-                    that remind me of you...
-                    but there is one thing I still
-                    want to ask you.
-                </p>
-
-
-                <p>
-                    I don't want to rush you.
-                    I just want to know if you
-                    would let us take the next step
-                    together.
-                </p>
-
-
-                <div class="heart">
-                    ❤️
-                </div>
-
-            </div>
-
-        `;
-
-
-        messageBox.classList.remove(
-            "hidden"
-        );
-
-    }
-);
-
-
-
-/* ==================================================
-   SHOOTING STARS
-================================================== */
-
-
-function createShootingStar() {
-
-    const shootingStar =
-        document.createElement("div");
-
-
-    shootingStar.classList.add(
-        "shooting-star"
-    );
-
-
-    shootingStar.style.left =
-        Math.random() * 100 + "%";
-
-
-    shootingStar.style.top =
-        Math.random() * 40 + "%";
-
-
-    document
-        .querySelector(".universe")
-        .appendChild(
-            shootingStar
-        );
-
-
-    setTimeout(
-        function () {
-
-            shootingStar.remove();
-
-        },
-        1500
-    );
+function closeMemory() {
+
+    document.getElementById(
+        "memory"
+    ).classList.remove("show");
 
 }
 
 
+/* ==========================================
+   OPEN FUTURE
+========================================== */
 
-/* New shooting star every 4 seconds */
+function openFuture() {
 
-setInterval(
-    createShootingStar,
-    4000
-);
+    document.getElementById(
+        "future"
+    ).classList.add("show");
 
+}
+
+
+/* ==========================================
+   OPEN PROPOSAL
+========================================== */
+
+function openProposal() {
+
+    document.getElementById(
+        "future"
+    ).classList.remove("show");
+
+    setTimeout(() => {
+
+        document.getElementById(
+            "proposal"
+        ).classList.add("show");
+
+    }, 500);
+
+}
+
+
+/* ==========================================
+   YES BUTTON
+========================================== */
+
+function sayYes() {
+
+    document.getElementById(
+        "proposal"
+    ).classList.remove("show");
+
+    document.getElementById(
+        "yesScreen"
+    ).classList.add("show");
+
+
+    createHearts();
+
+}
+
+
+/* ==========================================
+   CREATE HEARTS
+========================================== */
+
+function createHearts() {
+
+    for (let i = 0; i < 40; i++) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML = "❤️";
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.bottom =
+            "-30px";
+
+        heart.style.animationDelay =
+            Math.random() * 3 + "s";
+
+        heart.style.fontSize =
+            (15 + Math.random() * 30)
+            + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+
+            heart.remove();
+
+        }, 6000);
+
+    }
+
+}
+
+
+/* ==========================================
+   NEED SOME TIME
+========================================== */
+
+function needTime() {
+
+    alert(
+        "Take all the time you need. ❤️\n\n" +
+        "Whatever your answer is, I'll respect it."
+    );
+
+}
 
 </script>
 
 </body>
-
 </html>
