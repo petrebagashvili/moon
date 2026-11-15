@@ -1,0 +1,19 @@
+//
+//  CoupleTrackerTests.swift
+//  CoupleTrackerTests
+//
+//  Created by petre bagashvili on 14.11.26.
+//
+
+import Testing
+@testable import CoupleTracker
+
+struct CoupleTrackerTests {
+
+    @Test func example() async throws {
+        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+        // Swift Testing Documentation
+        // https://developer.apple.com/documentation/testing
+    }
+
+}
